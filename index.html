@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Clean Robot Salute</title>
+  <style>
+    canvas {
+      background: #06e06cc6;
+      display: block;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    h1
+    {
+      text-align: center;
+      color:chocolate;
+      font-family: 'Lilita One';
+      font-size: 70px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Feo</h1>
+<canvas id="robotCanvas" width="400" height="400"></canvas>
+<button id="saluteBtn">Salute</button>
+
+<script>
+const canvas = document.getElementById('robotCanvas');
+const ctx = canvas.getContext('2d');
+
+function drawRobotNormal() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Head
+  ctx.fillStyle = '#674';
+  ctx.fillRect(150, 40, 100, 100); 
+
+  // Eyes
+  ctx.fillStyle = '#000';
+  ctx.beginPath();
+  ctx.arc(175, 80, 8, 0, Math.PI * 2);
+  ctx.arc(225, 80, 8, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Neck
+  ctx.fillStyle = '#890';
+  ctx.fillRect(185, 140, 30, 10);
+
+   // Mouth
+  ctx.beginPath();
+  ctx.arc(200, 125, 8, 0, Math.PI * 2); 
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+
+  // Body
+  ctx.fillStyle = '#908';
+  ctx.fillRect(140, 150, 120, 150);
+
+  // Arms
+  ctx.fillStyle = '#087';
+  ctx.fillRect(100, 150, 30, 100);   
+  ctx.fillRect(270, 150, 30, 100);  
+
+  // Fists 
+  ctx.beginPath();
+  ctx.arc(115, 250, 15, 0, Math.PI * 2); 
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(285, 250, 15, 0, Math.PI * 2); 
+  ctx.fill();
+
+  // Legs
+  ctx.fillStyle = '#087';
+  ctx.fillRect(150, 300, 30, 70);
+  ctx.fillRect(220, 300, 30, 70);
+}
+
+function drawRobotSaluting() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Head
+  ctx.fillStyle = '#674';
+  ctx.fillRect(150, 40, 100, 100); 
+
+  // Eyes
+  ctx.fillStyle = '#000';
+  ctx.beginPath();
+  ctx.arc(175, 80, 8, 0, Math.PI * 2);
+  ctx.arc(225, 80, 8, 0, Math.PI * 2);
+  ctx.fill();
+ 
+
+  // Neck
+  ctx.fillStyle = '#890';
+  ctx.fillRect(185, 140, 30, 10);
+
+  //Smile
+  ctx.beginPath();
+  ctx.arc(200, 115, 20, 0, Math.PI); 
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Body
+  ctx.fillStyle = '#908';
+  ctx.fillRect(140, 150, 120, 150);
+
+  // Left Arm
+  ctx.fillStyle = '#087';
+  ctx.fillRect(90, 150, 30, 100);
+  ctx.beginPath();
+  ctx.arc(105, 250, 15, 0, Math.PI * 2); 
+  ctx.fill();
+
+  // Right Arm – Saluting with fist
+  ctx.save();
+  ctx.translate(290, 150); 
+  ctx.rotate(-2.75);                    
+  ctx.fillStyle = '#087';
+  ctx.fillRect(0, 0, 30, 50);    
+
+  ctx.translate(0, 50);          
+  ctx.rotate(-1.4);              
+  ctx.fillRect(0, 0, 30, 60);    
+
+  // Fist
+  ctx.beginPath();
+  ctx.arc(15, 60, 15, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+
+  // Legs
+  ctx.fillStyle = '#087';
+  ctx.fillRect(150, 300, 30, 70);
+  ctx.fillRect(220, 300, 30, 70);
+}
+
+const saluteBtn = document.getElementById('saluteBtn');
+saluteBtn.addEventListener('click', () => {
+  drawRobotSaluting();
+  setTimeout(drawRobotNormal, 5000);
+});
+
+
+
+drawRobotNormal();
+</script>
+
+</body>
+</html>
